@@ -1,0 +1,32 @@
+version: '3.9'
+
+networks:
+  taskapp-network:
+    driver: bridge
+
+services: 
+  postgresql:
+    image: postgres:12.4
+    container_name: task-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: taskapp
+    ports:
+      - 5432:5432
+    networks: 
+      - taskapp-network
+  backend:
+    image: python
+    build:
+        context: ../backend/src
+        dockerfile: Dockerfile
+    container_name: pyback
+    ports:
+      - 5000:5000
+    networks:
+      - taskapp-network
+    depends_on:
+      - postgresql
+volumes:
+  postgresql: { }
