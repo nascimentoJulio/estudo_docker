@@ -1,11 +1,9 @@
 import flask
-from flask import request, json, jsonify
-import requests
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
-print("Rodou")
-@app.route("/hello", methods=["GET"])
+
+@app.route("/task", methods=["POST"])
 def index():
     print("ola")
     return "Ola"
