@@ -16,32 +16,32 @@ services:
       - 5432:5432
     networks: 
       - taskapp-network
-  backend:
-    image: python
-    build:
-        context: ../backend/src
-        dockerfile: Dockerfile
-    container_name: pyback
-    ports:
-      - 5000:5000
-    networks:
-      - taskapp-network
-    depends_on:
-      - postgresql
+  # backend:
+  #   image: python
+  #   build:
+  #       context: ../backend/src
+  #       dockerfile: Dockerfile
+  #   container_name: pyback
+  #   ports:
+  #     - 5000:5000
+  #   networks:
+  #     - taskapp-network
+  #   depends_on:
+  #     - postgresql
 
-  frontend:
-    image: node:16
-    build: 
-      context: ../frontend/taskapp
-      dockerfile: Dockerfile
-    container_name: front_task
-    ports:
-      - 3000:3000
-    networks:
-      - taskapp-network
-    depends_on:
-      - backend
+  # frontend:
+  #   image: node:16
+  #   build: 
+  #     context: ../frontend/taskapp
+  #     dockerfile: Dockerfile
+  #   container_name: front_task
+  #   ports:
+  #     - 3000:3000
+  #   networks:
+  #     - taskapp-network
+  #   depends_on:
+  #     - backend
 volumes:
   postgresql: { }
-  backend: { }
-  frontend: { }
+  # backend: { }
+  # frontend: { }
