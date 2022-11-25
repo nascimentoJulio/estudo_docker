@@ -77,6 +77,19 @@ def delete_task(task_id):
   conn.commit()
   return ""
 
+@app.route("/task/update-status/<task_id>", methods=["PATCH"])
+def complete_task(task_id):
+    cur.execute("""UPDATE tasks 
+                   SET 
+                     is_completed = not is_completed 
+                   WHERE id = %s""", (task_id,))
+    conn.commit();
+    return jsonify(
+       message="Atualizado com sucesso",
+       status= 201
+    )
+
+
    
 if __name__ == '__main__':
   app.run(host="0.0.0.0", debug=True, port=5000)
